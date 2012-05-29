@@ -1,7 +1,7 @@
-class ruby::install ( $version='1.8.7' ) {
-  # Make sure we're including the ruby class, so the 'params' and 'config'
-  #  classes get tossed in our catalog
-  include ruby
+class ruby::install {
+  # Make sure we require ruby::params before we get here, so we know
+  #  what packages to install
+  require ruby::params
 
   # Install the packages. The ruby_packages variable gets defined in
   #  ruby::params, based on what version ruby::install was called with

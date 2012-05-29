@@ -1,8 +1,8 @@
 class ruby::params {
-  # If, for whatever reason, ruby::install isn't yet in our catalog,
+  # If, for whatever reason, the ruby class isn't yet in our catalog,
   #  do that NOW so the following conditionals can determine the
   #  ruby version that's being installed/configured
-  include ruby::install
+  require ruby
 
   # Define the source for the /etc/gemrc file based on the realm
   #  in which this server is homed
@@ -13,9 +13,9 @@ class ruby::params {
   }
 
   # Set ruby_version for use inside this class to determine packages. This is
-  #  probably not needed, as ruby::install::version should always be set
-  if $ruby::install::version {
-    $ruby_version = $ruby::install::version
+  #  probably not needed, as ruby::version should always be set
+  if $ruby::version {
+    $ruby_version = $ruby::version
   } else {
     $ruby_version = '1.8.7'
   }
